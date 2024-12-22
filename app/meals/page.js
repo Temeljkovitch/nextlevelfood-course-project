@@ -1,13 +1,15 @@
-import Link from "next/link";
+
+import styles from "./page.module.css";
+import MealsGrid from "@/components/meals/meals-grid";
+import MealsHeader from "@/components/meals/meals-header";
 
 export default function Meals() {
   return (
-    <main>
-      <h1 style={{ color: "white", textAlign: "center" }}>Meals</h1>
-
-      <p>
-        <Link href="/">Back home</Link>
-      </p>
-    </main>
+    <>
+      <MealsHeader />
+      <main className={styles.main}>
+        <MealsGrid meals={[]} />
+      </main>
+    </>
   );
 }
