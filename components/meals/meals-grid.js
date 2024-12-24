@@ -2,6 +2,7 @@ import MealItem from "./meal-item";
 import styles from "./meals-grid.module.css";
 
 const MealsGrid = ({ meals }) => {
+
   return (
     <ul className={styles.meals}>
       {meals.map((meal) => (

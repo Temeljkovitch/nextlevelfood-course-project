@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ShareMeal() {
+export default function ShareMealPage() {
   return (
     <main>
       <h1 style={{ color: "white", textAlign: "center" }}>Share Meal</h1>
