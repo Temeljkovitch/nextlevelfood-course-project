@@ -1,8 +1,35 @@
-export default function MealDetailsPage({params}) {
+import Image from "next/image";
+import styles from "./page.module.css";
+import { getSingleMeal } from "@/db/meal";
+import { notFound } from "next/navigation";
+
+export default function MealDetailsPage(request) {
+  const meal = getSingleMeal(request.params.mealDetails);
+  if (!meal) {
+    notFound();
+  }
+  const { title, image, creator, creator_email, summary } = meal;
+  meal.instructions = meal.instructions.replace(/\n/g, "<br />");
+
   return (
     <main>
-      <h1 style={{ color: "white", textAlign: "center" }}>Meal Details</h1>
-      <p>{params.details}</p>
+      <header className={styles.header}>
+        <div className={styles.image}>
+          <Image src={image} alt={title} fill />
+        </div>
+        <div className={styles.headerText}>
+          <h1>{title}</h1>
+          <p className={styles.creator}>
+            by <a href={`mailto:${creator_email}`}>{creator}</a>
+          </p>
+          <p className={styles.summary}>{summary}</p>
+        </div>
+      </header>
+
+      <p
+        className={styles.instructions}
+        dangerouslySetInnerHTML={{ __html: meal.instructions }}
+      ></p>
     </main>
   );
 }
