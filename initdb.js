@@ -164,6 +164,9 @@ const dummyMeals = [
   },
 ];
 
+// Clear meals table
+// db.exec("DROP TABLE IF EXISTS meals");
+
 db.prepare(
   `
    CREATE TABLE IF NOT EXISTS meals (
