@@ -3,6 +3,19 @@ import styles from "./page.module.css";
 import { getSingleMeal } from "@/db/meal";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({ params }) {
+  const meal = getSingleMeal(params.mealDetails);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function MealDetailsPage(request) {
   const meal = getSingleMeal(request.params.mealDetails);
   if (!meal) {
